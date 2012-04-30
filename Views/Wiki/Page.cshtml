@@ -1,0 +1,8 @@
+@model FunnelWeb.Web.Views.Wiki.PageModel
+@{
+  ViewBag.Title = Model.Entry.MetaTitle;
+}
+
+<div class='entry @String.Join(" ", Html.CssKeywordsFor(Model.Entry))'>
+  @Html.RenderTrusted(Model.Entry.Body, Model.Entry.Format)
+</div>

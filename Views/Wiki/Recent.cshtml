@@ -1,0 +1,16 @@
+@model FunnelWeb.Web.Views.Wiki.RecentModel
+@section Meta 
+{
+    <meta name="description" content="@Html.Settings().SearchDescription" />
+    <meta name="keywords" content="@Html.Settings().SearchKeywords" />
+}
+@section Summary 
+{
+    @Html.RenderTrusted(Html.Settings().Introduction, Formats.Markdown)
+}
+
+<h1>@Model.Title</h1>
+
+@Html.DisplayFor(x => x.Results)
+
+@Html.DisplayFor(x => x.Paginator)

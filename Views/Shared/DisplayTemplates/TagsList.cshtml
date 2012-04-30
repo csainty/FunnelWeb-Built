@@ -1,0 +1,7 @@
+﻿@model string
+<span class='tags'>
+    @foreach (var tag in (Model??"").Split(new[]{","}, StringSplitOptions.RemoveEmptyEntries))
+    {
+      @Html.ActionLink(tag, "Index", "Tagged", new { tag }, new { title = "Posts tagged " + tag, @class = "tag " + @Html.CssKeywordsForTag(tag) })
+    }
+</span>

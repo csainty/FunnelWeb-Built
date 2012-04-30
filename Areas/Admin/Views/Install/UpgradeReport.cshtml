@@ -1,0 +1,27 @@
+@model FunnelWeb.Web.Areas.Admin.Views.Install.UpgradeModel
+@{
+  ViewBag.Title = "FunnelWeb Installation Report";
+  Layout = "~/Areas/Admin/Views/Shared/_Private.cshtml";
+}
+
+<h1>FunnelWeb Upgrade Report</h1>
+    
+@if (Model.Results.All(x => x.Successful)) 
+{
+  <p class='good'>The upgrade completed successfully. @Model.Results.Sum(x => x.Scripts.Count()) scripts were run.</p>
+  <p class='important'><a href="@Url.Content("~/")">Woohoo!</a></p>
+}
+else
+{
+  <p class='bad'>The upgrade failed. Please <strong>review the logs below</strong> to resolve the issue.</p>
+  <p class='important'>
+    @Html.AdminActionLink("Back to upgrade page", "Index", "Install")
+  </p>
+}
+
+@if (Model.Results.Any(x => x.Error != null))
+{
+  <h2>Log</h2>
+
+  <pre>@Model.Log</pre>
+}
